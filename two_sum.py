@@ -31,19 +31,38 @@ Follow-up: Can you come up with an algorithm that is less than O(n2) time comple
 '''
 
 class Solution(object):
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        result = []
-        if (len(nums) < 2):
-            return result;
+    # def twoSum(self, nums, target):
+    #     """
+    #     :type nums: List[int]
+    #     :type target: int
+    #     :rtype: List[int]
+    #     """
+    #     result = []
+    #     if (len(nums) < 2):
+    #         return result;
         
-        for i in range(len(nums)-1):
-            for j in range(i+1, len(nums)):
-                if nums[i] + nums[j] == target:
-                    result = [i, j]
+    #     for i in range(len(nums)-1):
+    #         for j in range(i+1, len(nums)):
+    #             if nums[i] + nums[j] == target:
+    #                 result = [i, j]
 
-        return result
+    #     return result
+
+    def twoSum(self, nums, target):
+        num_dict = {}
+
+        for i, num in enumerate(nums):
+            complement = target - num
+
+            if complement in num_dict:
+                return [num_dict[complement], i]
+
+            num_dict[num] = i
+
+        return []
+
+if __name__ == "__main__":
+    nums = [3,3]
+    target = 6
+    result = Solution().twoSum(nums, target)
+    print(result)
